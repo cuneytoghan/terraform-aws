@@ -42,3 +42,7 @@ resource "aws_subnet" "private3" {
   map_public_ip_on_launch = false
 }
 
+resource "aws_internet_gateway" "gw" {
+  vpc_id = aws_vpc.main.id
+  tags   = var.tags
+}
