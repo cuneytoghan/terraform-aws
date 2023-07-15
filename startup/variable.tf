@@ -8,3 +8,8 @@ variable "region" {
   default     = ""
   description = "Please provide a region for provider"
 }
+variable "tags" {
+  type        = map(any)
+  default     = {}
+  description = "Please provide a tag for resources"
+}
