@@ -13,3 +13,18 @@ variable "tags" {
   default     = {}
   description = "Please provide a tag for resources"
 }
+variable "public_subnet1" {
+  type        = string
+  default     = ""
+  description = "Please provide public subnet CIDR block"
+}
+variable "public_subnet2" {
+  type        = string
+  default     = ""
+  description = "Please provide public subnet CIDR block"
+}
+variable "public_subnet3" {
+  type        = string
+  default     = ""
+  description = "Please provide public subnet CIDR block"
+}
