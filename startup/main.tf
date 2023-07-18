@@ -11,6 +11,8 @@ resource "aws_subnet" "public1" {
   tags                    = var.tags
   map_public_ip_on_launch = true
 }
+
+
 resource "aws_subnet" "public2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet2
@@ -73,38 +75,38 @@ resource "aws_route_table_association" "public3" {
 
 
 
-resource "aws_eip" "ngw" {
-  domain = "vpc"
-}
-resource "aws_nat_gateway" "example" {
-  allocation_id = aws_eip.ngw.id
-  subnet_id     = aws_subnet.public1.id
+# resource "aws_eip" "ngw" {
+#   domain = "vpc"
+# }
+# resource "aws_nat_gateway" "example" {
+#   allocation_id = aws_eip.ngw.id
+#   subnet_id     = aws_subnet.public1.id
 
 
-  # To ensure proper ordering, it is recommended to add an explicit dependency
-  # on the Internet Gateway for the VPC.
-  depends_on = [aws_internet_gateway.gw]
-  tags       = var.tags
-}
-resource "aws_route_table" "private" {
-  vpc_id = aws_vpc.main.id
+#   # To ensure proper ordering, it is recommended to add an explicit dependency
+#   # on the Internet Gateway for the VPC.
+#   depends_on = [aws_internet_gateway.gw]
+#   tags       = var.tags
+# }
+# resource "aws_route_table" "private" {
+#   vpc_id = aws_vpc.main.id
 
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_nat_gateway.example.id
-  }
-  tags = var.tags
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = aws_nat_gateway.example.id
+#   }
+#   tags = var.tags
 
-}
-resource "aws_route_table_association" "private1" {
-  subnet_id      = aws_subnet.private1.id
-  route_table_id = aws_route_table.private.id
-}
-resource "aws_route_table_association" "private2" {
-  subnet_id      = aws_subnet.private2.id
-  route_table_id = aws_route_table.private.id
-}
-resource "aws_route_table_association" "private3" {
-  subnet_id      = aws_subnet.private3.id
-  route_table_id = aws_route_table.private.id
-}
+# }
+# resource "aws_route_table_association" "private1" {
+#   subnet_id      = aws_subnet.private1.id
+#   route_table_id = aws_route_table.private.id
+# }
+# resource "aws_route_table_association" "private2" {
+#   subnet_id      = aws_subnet.private2.id
+#   route_table_id = aws_route_table.private.id
+# }
+# resource "aws_route_table_association" "private3" {
+#   subnet_id      = aws_subnet.private3.id
+#   route_table_id = aws_route_table.private.id
+# }
