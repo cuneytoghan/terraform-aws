@@ -40,8 +40,8 @@ variable "min_size" {
   default     = ""
   description = "Please provide a value"
 }
-variable subnets {
-  type        = list
+variable "subnets" {
+  type        = list(any)
   default     = []
   description = "please provide list of subnets"
 }
