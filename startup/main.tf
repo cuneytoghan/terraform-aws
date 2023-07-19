@@ -10,6 +10,7 @@ resource "aws_subnet" "public1" {
   cidr_block              = var.public_subnet1
   tags                    = var.tags
   map_public_ip_on_launch = true
+  availability_zone = "us-east-1a"
 }
 
 
@@ -18,30 +19,36 @@ resource "aws_subnet" "public2" {
   cidr_block              = var.public_subnet2
   tags                    = var.tags
   map_public_ip_on_launch = true
+  availability_zone = "us-east-1b"
 }
 resource "aws_subnet" "public3" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.public_subnet3
   tags                    = var.tags
   map_public_ip_on_launch = true
+  availability_zone = "us-east-1c"
 }
 resource "aws_subnet" "private1" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.private_subnet1
   tags                    = var.tags
   map_public_ip_on_launch = false
+  availability_zone = "us-east-1d"
 }
 resource "aws_subnet" "private2" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.private_subnet2
   tags                    = var.tags
   map_public_ip_on_launch = false
+  availability_zone = "us-east-1e"
+
 }
 resource "aws_subnet" "private3" {
   vpc_id                  = aws_vpc.main.id
   cidr_block              = var.private_subnet3
   tags                    = var.tags
   map_public_ip_on_launch = false
+  availability_zone = "us-east-1f"
 }
 
 resource "aws_internet_gateway" "gw" {
